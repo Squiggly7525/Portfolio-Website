@@ -1,4 +1,5 @@
 :root {
+  
   --primary-color: #6c63ff;
   --secondary-color: #f5f2fe;
   --box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
@@ -6,7 +7,23 @@
 
 body {
   margin: 0;
+  background-color: rgb(18, 18, 18);
 }
+
+.custom-navbar {
+  background-color: rgb(18, 18, 18); !important;
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+  color: white !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+  color: var(--primary-color) !important;
+}
+
 
 h1,
 h2,
@@ -57,7 +74,6 @@ p {
 .project-link {
   background: var(--primary-color);
   box-shadow: var(--box-shadow);
-  color: white;
 }
 
 .about-link {
