@@ -28,14 +28,16 @@ body {
 .background-layer {
   position: fixed;
   inset: 0;
-  background-image: url("images/background.jpg");
-  background-size: contain;
+  background-image: url("images/home-background.png");
+  background-size:auto;
   background-repeat: no-repeat;
   background-position: center top;
   background-color: rgb(18, 18, 18);
   animation: floatBackground 20s ease-in-out infinite alternate;
   z-index: -2;
 }
+
+
 @keyframes floatBackground {
   0% {
     transform: translate(0, 0) scale(1);
@@ -70,11 +72,15 @@ body {
 .navbar .nav-link,
 .navbar .navbar-brand {
   color: white !important;
+  
 }
 
 .navbar .nav-link:hover,
 .navbar .navbar-brand:hover {
   color: var(--primary-color) !important;
+}
+.useful-links .nav-link {
+  font-size: 40px !important;
 }
 
 
@@ -86,7 +92,7 @@ h3 {
 }
 
 h1 {
-  font-size: 98px;
+  font-size: 60px;
 }
 
 h2 {
@@ -109,6 +115,43 @@ p {
   font-size: 18px;
   line-height: 1.5;
   text-align: center;
+}
+.thumbnail-section {
+  padding: 60px 20px;
+}
+
+.thumbnail-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.thumb-card {
+  width: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.thumb-card:hover {
+  transform: scale(1.03);
+}
+
+.thumb-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.thumb-title {
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  color: var(--secondary-color);
+  background-color: transparent;
 }
 
 .navigation-links {
