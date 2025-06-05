@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Études For A Blank Planet</title>
+  <style>
+    .home-button {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  color: white;
+  font-family: 'Jost', sans-serif;
+  font-size: 1rem;
+  text-decoration: none;
+  z-index: 1000;
+
+}
+
+.home-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+    body {
+      margin: 0;
+      background: #111;
+     font-family: 'Jost', sans-serif;
+
+    }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  padding: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;         /* Force square ratio */
+  object-fit: cover;           /* Zoom to fill square */
+  object-position: center;     /* Center the image */
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  align-items: center;
+  justify-content: center;
+}
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: white;
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+      user-select: none;
+    }
+
+    .arrow:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .arrow.left {
+      left: 30px;
+    }
+
+    .arrow.right {
+      right: 30px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+
+  </style>
+</head>
+<body>
+    
+    <header style="text-align: center; color: white; padding: 40px 20px 10px;">
+        <a href="index.html" class="home-button">Hasti Salehi</a>
+
+  <h1 style="margin-bottom: 10px; font-size: 2rem;">Études For A Blank Planet
+</h1>
+  <p style="max-width: 600px; margin: 0 auto; font-size: 1rem; line-height: 1.5;">
+explores a post-Anthropocene world where humanity’s dominant existence has faded. Using digital
+materials ironically, the series envisions a natural world free from human presence, evoking a stark contrast between ecological
+renewal and human absence.
+ </p>
+</header>
+
+
+<section class="gallery-grid">
+  <img src="src/images/deer-01.jpg" alt="3D Art" onclick="openModal(0)">
+  <img src="src/images/deer-02.jpg" alt="3D Art" onclick="openModal(1)">
+  <img src="src/images/deer-03.jpg" alt="3D Art" onclick="openModal(2)">
+  <img src="src/images/girl-01.jpg" alt="3D Art" onclick="openModal(3)">
+  <img src="src/images/girl-02.jpg" alt="3D Art" onclick="openModal(4)">
+</section>
+
+<div class="modal" id="imageModal">
+  <span class="close-btn" onclick="closeModal()">&times;</span>
+  <button class="arrow left" onclick="prevImage()">&#8249;</button>
+  <img id="modalImage" src="" alt="Large View">
+  <button class="arrow right" onclick="nextImage()">&#8250;</button>
+</div>
+
+<script>
+  const images = [
+    "src/images/deer-01.jpg",
+    "src/images/deer-02.jpg",
+    "src/images/deer-03.jpg",
+    "src/images/girl-01.jpg",
+    "src/images/girl-02.jpg"
+  ];
+  let currentIndex = 0;
+
+  function openModal(index) {
+    currentIndex = index;
+    updateImage();
+    document.getElementById("imageModal").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("imageModal").style.display = "none";
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  }
+
+  function updateImage() {
+    document.getElementById("modalImage").src = images[currentIndex];
+  }
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    const modalOpen = document.getElementById("imageModal").style.display === "flex";
+    if (modalOpen) {
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "Escape") closeModal();
+    }
+  });
+
+  // Close when clicking outside image
+  window.addEventListener("click", e => {
+    if (e.target.id === "imageModal") closeModal();
+  });
+</script>
+
+</body>
+</html>
